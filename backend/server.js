@@ -7,22 +7,14 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 
 app.use(cors({
-  origin: [
-    'http://localhost:3000',
-    'https://fairhireai.vercel.app',
-    'https://fairhireai-git-main-aman240506s-projects.vercel.app',
-    'https://fairhireai-maau55k5d-aman240506s-projects.vercel.app'
-  ],
-  methods: ['GET', 'POST'],
-  allowedHeaders: ['Content-Type']
+  origin: '*' // temporary - allow all origins for testing
 }));
 
 app.use(express.json());
 
-// 👇 Add this health check route
-app.get('/', (req, res) => {
-  res.json({ status: 'ok', message: 'FairHireAI backend is running' });
-});
+// Health check - Railway needs this
+app.get('/', (req, res) => res.send('OK'));
+app.get('/health', (req, res) => res.send('OK'));
 
 app.use('/api', apiRoutes);
 
