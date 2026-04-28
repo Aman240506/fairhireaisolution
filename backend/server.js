@@ -15,3 +15,6 @@ app.use('/api', apiRoutes);
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+app.use(cors({
+  origin: "https://fairhireai.vercel.app"
+}));
